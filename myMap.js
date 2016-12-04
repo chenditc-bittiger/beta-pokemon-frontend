@@ -6,13 +6,13 @@ var map_manager = {
 map_manager.map_items = [
     {
         "pokemon_id" : 12,
-        "expire" : 1480822665,
+        "expire" : 1480829864,
         "longitude" : -73.45,
         "latitude" : 40.75
     },
     {
         "pokemon_id" : 2,
-        "expire" : 1480822665,
+        "expire" : 1480829864,
         "longitude" : -73.46,
         "latitude" : 40.75
     }
@@ -32,13 +32,29 @@ function loadMapScenario() {
     });
     map_manager.map = map;
     
-    for (var i in map_manager.map_items) {
+
+}
+
+function refresh_pokemon() {
+     // 1. Prepare pushpins
+     var layer = new Microsoft.Maps.Layer();
+     var pushpins = [];
+     for (var i in map_manager.map_items) {
         var map_item = map_manager.map_items[i];
         var icon_url = 'https://github.com/chenditc/mypokemon.io/raw/gh-pages/images/pushpin_images/pokemon/' + map_item["pokemon_id"] + '.png';
         var count_down = get_count_down_from_timestamp(map_item["expire"]);
         var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(map_item["latitude"], map_item["longitude"]), 
                                                  { title: count_down,
                                                    icon: icon_url});
-        map.entities.push(pushpin); 
+        pushpins.push(pushpin);
     }
+    layer.add(pushpins);
+
+    // 2. Remove old pushpins
+    map_manager.map.layers.clear();
+    
+    // 3. Add new pushpins
+    map_manager.map.layers.insert(layer);
 }
+
+refresh_pokemon();
