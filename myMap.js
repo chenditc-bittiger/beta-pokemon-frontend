@@ -35,7 +35,7 @@ function query_pokemon_data() {
             //This is where you would put an error callback
         });
 }
-query_pokemon_data();
+
 
 function get_count_down_from_timestamp(expire) {
     var now_time = new Date().getTime() / 1000;
@@ -50,6 +50,7 @@ function loadMapScenario() {
         credentials: 'AjZmbGB9OLnThq1IWaOe8EqA1ivi2lExihwHHDoEG6jk8SrcTkLKHGKF4Pyr0biI'
     });
     map_manager.map = map;
+    query_pokemon_data();
     window.setInterval(refresh_pokemon, 1000);
 
 }
