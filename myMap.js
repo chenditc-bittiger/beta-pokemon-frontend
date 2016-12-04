@@ -31,7 +31,7 @@ function loadMapScenario() {
         credentials: 'AjZmbGB9OLnThq1IWaOe8EqA1ivi2lExihwHHDoEG6jk8SrcTkLKHGKF4Pyr0biI'
     });
     map_manager.map = map;
-    
+    refresh_pokemon();
 
 }
 
@@ -57,4 +57,4 @@ function refresh_pokemon() {
     map_manager.map.layers.insert(layer);
 }
 
-refresh_pokemon();
+
